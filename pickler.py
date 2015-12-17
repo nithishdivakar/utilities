@@ -23,7 +23,7 @@ from PIL import Image
 
 # modify these 3 things to suit ur need
 test_dir_path  = "BSDS300/images/test"
-train_dir_path = "BSDS300/images/test"
+train_dir_path = "BSDS300/images/train"
 op_file_name   = "BSDS.pkl"
 
 
@@ -48,7 +48,7 @@ def read_images(path):
 	images = os.listdir(path)
 	IMG = []
 	for img_name in images:
-		im = Image.open(test_dir_path+img_name)
+		im = Image.open(path+img_name)
 		im_list = transform_image(im) # function to be applied to each image
 		for i in im_list:
 			IMG.append(i)
@@ -59,9 +59,9 @@ def main():
 	global test_dir_path,train_dir_path
 	train_dir_path = path_sanitiser(train_dir_path)
 	test_dir_path  = path_sanitiser(test_dir_path)
-	test_images	= read_images(train_dir_path)
-	train_set	  = read_images(train_dir_path)
-	test_set	   = read_images(test_dir_path)
+	test_images    = read_images(train_dir_path)
+	train_set      = read_images(train_dir_path)
+	test_set       = read_images(test_dir_path)
 	pickle.dump((train_set , test_set ),open(op_file_name,"wb"))
 	print("Done !!")
 
