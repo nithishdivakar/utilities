@@ -5,7 +5,7 @@ from skimage.measure import structural_similarity
 	
 def psnr(img1,img2,normalised = True):
 	if normalised ==True:
-		MAX = 1.0
+		MAX = 1.0   #default
 	else:
 		MAX = 255.0;
 	MSE = mse(img1,img2)
