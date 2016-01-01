@@ -19,6 +19,12 @@ pat3 = P.list_to_deconvolve(pat1,(pat2.shape[0],pat2.shape[1]))
 pat4 = P.list_to_explode(pat1,(pat2.shape[0],pat2.shape[1]))
 pat5 = P.explode_patches(lena_gray,(11,11),1)
 
+
+
+I = P.deconvolve_to_img(pat2)
+I = Image.fromarray(I)
+I.show()
+lena_gray.show()
 print pat2.shape
 print pat3.shape
 
