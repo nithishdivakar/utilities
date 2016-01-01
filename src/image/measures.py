@@ -5,6 +5,7 @@ def entropy(signal):
     '''
        copied and modified from https://www.hdm-stuttgart.de/~maucher/Python/MMCodecs/html/basicFunctions.html
     '''
+    
     signal = signal.reshape(signal.size)
     '''
     function returns entropy of a signal
