@@ -11,9 +11,9 @@ CONFIG ={
 
 
 def getuuid(project_name):
-    return project_name+time.strftime("_%Y%m%d%H%M%S")
+    return project_name+time.strftime("__%Y_%b_%d_%H_%M_%S__")
 
-def saveEE(project_name, keras_model, hyper_paramaters, comments):
+def saveEE(project_name, keras_model):
     '''
         project_name  NAme of your projects
         keras_model   Keras model object
@@ -23,11 +23,12 @@ def saveEE(project_name, keras_model, hyper_paramaters, comments):
     uuid = getuuid(project_name)
     saveArch           (uuid, keras_model)
     saveWeights        (uuid, keras_model)
-    saveHyperParameter (uuid, hyper_paramaters)
-    saveComments       (uuid, comments)
+    print "saved to model id: "+uuid
 
 def saveArch (uuid, keras_model):
-    json_string = keras_model.to_json()
+    json_object = json.loads(keras_model.to_json())
+    json_string = json.dumps(json_object,indent = 2, sort_keys=True)
+    #print json_string
     open(uuid+"_arch."+CONFIG["keras_arch_extension"],"w").write(json_string)
 
 def saveWeights (uuid, keras_model):
