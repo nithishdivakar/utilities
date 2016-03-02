@@ -39,14 +39,15 @@ def convert_patch_image(input_datum,image_size,stride=(1,1),pad=True):
     if pad == True:
         outpt_shape = (image_size[0] + patch_shape[0]-1, image_size[1] + patch_shape[1]-1)
     else:
-        outpt_shape = image_size
+        outpt_shape = (image_size[0]+1,image_size[1]+1)
 
     image = numpy.zeros(outpt_shape)
     weigh = numpy.zeros(outpt_shape)
     k = 0
-    #print image.shape
-    for coord in product( xrange(0,outpt_shape[1]-patch_shape[1]+1,stride[1]), xrange(0,outpt_shape[0]-patch_shape[0]+1,stride[0])):
-        #print k,coord," ",
+    #print patch_shape
+    for coord in product( xrange(0,outpt_shape[0]-patch_shape[0]+1,stride[0]), xrange(0,outpt_shape[1]-patch_shape[1]+1,stride[1])):
+        #print coord
+        #print image[coord[0]:coord[0]+patch_shape[0],coord[1]:coord[1]+patch_shape[1]].shape
         image[coord[0]:coord[0]+patch_shape[0],coord[1]:coord[1]+patch_shape[1]] += patches[k]
         weigh[coord[0]:coord[0]+patch_shape[0],coord[1]:coord[1]+patch_shape[1]] += 1.0
         k    = k+1

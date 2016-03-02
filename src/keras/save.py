@@ -11,7 +11,8 @@ CONFIG ={
 
 
 def getuuid(project_name):
-    return project_name+time.strftime("__%Y_%b_%d_%H_%M_%S__")
+    return (project_name,time.strftime("__%Y_%b_%d_%H_%M_%S__"))
+
 
 def saveEE(project_name, keras_model):
     '''
@@ -20,10 +21,11 @@ def saveEE(project_name, keras_model):
         hyper_paramaters Python dictionary containing all hyper parameters
         comments      A list of string putting all comments about the current model
     '''
-    uuid = getuuid(project_name)
+    temp = getuuid(project_name)
+    uuid = temp[0]+temp[1]
     saveArch           (uuid, keras_model)
     saveWeights        (uuid, keras_model)
-    print "saved to model id: "+uuid
+    return temp[1]
 
 def saveArch (uuid, keras_model):
     json_object = json.loads(keras_model.to_json())
