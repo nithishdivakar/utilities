@@ -12,7 +12,7 @@ class index:
         frame='''
         <html>
             <META HTTP-EQUIV="REFRESH" CONTENT="5">
-            <body>
+            <body style="background-color: black;color: #0F0;">
                 <pre> 
                     {} 
                 <pre>
